@@ -1,5 +1,16 @@
 # README.md
 
+## Quick Start
+
+1. Create a local environment variable called `OPENAI_API_KEY` and place your OpenAI API key in it.
+1. Install requirements:
+
+    python -m pip install -r requirements.txt
+
+1. Start carousel:
+
+    python src/carousel.py
+
 ## Revolutionizing User Interfaces: An AI-driven Approach Leveraging HTML-response Interpretation
 
 ### The AI-Driven UI Proposal
