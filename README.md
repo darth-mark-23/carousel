@@ -1,9 +1,13 @@
 # README.md
 
+## Summary
+
+Carousel aims to revolutionize user interfaces using the intelligence of Large Language Models to generate custom HTML5 pages as needed.
+
 ## Quick Start
 
 1. Create a local environment variable called `OPENAI_API_KEY` and place your OpenAI API key in it.
-1. Install requirements:
+1. Install requirements (a virtual environment is recommended but not required):
 
     python -m pip install -r requirements.txt
 
