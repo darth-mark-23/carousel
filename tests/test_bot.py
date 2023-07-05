@@ -30,7 +30,7 @@ class TestBot(unittest.TestCase):
     def test_get_function_definitions(self):
         self.assertEqual(self.bot.get_function_definitions(), self.function_definitions)
 
-    @patch('bot.get_completion')
+    @patch('models.bot.get_completion')
     def test_get_completion(self, mock_get_completion):
         # Arrange
         mock_messages = ['Hello', 'How can I help you?']

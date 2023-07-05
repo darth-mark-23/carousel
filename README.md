@@ -75,3 +75,8 @@ Initially, Carousel will be the only Information Module provided. The rest, whil
 Transitioning towards an AI-driven UI model could be a game-changer in app use and development, making it more streamlined, cost-effective, and efficient. This approach maximizes the potential of AI and paves the way for a new generation of apps that are smarter, more personalized, and more intuitive to use.
 
 Join us as we embark on this exciting journey to revolutionize user interfaces. Your contributions, ideas, and feedback are most welcome!
+
+## Unit Tests
+
+> export PYTHONPATH=$PYTHONPATH:/path/to/your/project/root
+> python -m unittest discover tests
