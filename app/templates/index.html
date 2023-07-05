@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carousel Chatbot</title>
+</head>
+<body>
+    <div id="chatbox">
+        <p id="botStarterMessage">Hello! How can I assist you today?</p>
+    </div>
+    <form id="userInput" method="post">
+        <input id="textInput" type="text" name="msg" placeholder="Message">
+        <input id="buttonInput" type="submit" value="Send">
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#userInput").on("submit", function(e){
+            e.preventDefault();
+            var userText = $("#textInput").val();
+            $("#textInput").val("");
+            var temp = "<p class='userMessage'>"+userText+"</p>";
+            $("#chatbox").append(temp);
+            $.ajax({
+                url: "/get",
+                method: "POST",
+                data: {msg: userText},
+                success: function(result){
+                    var botHtml = "<p class='botMessage'>"+result.msg+"</p>";
+                    $("#chatbox").append(botHtml);
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

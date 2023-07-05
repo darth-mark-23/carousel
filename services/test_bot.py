@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, Mock
-from bot import Bot
+from models.bot import Bot
 
 class TestBot(unittest.TestCase):
     def setUp(self):
