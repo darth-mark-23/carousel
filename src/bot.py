@@ -1,10 +1,10 @@
 from get_completion import get_completion
 
 class Bot:
-    def __init__(self, model, system_message, functions):
+    def __init__(self, model, system_message, function_definitions):
         self.model = model
         self.system_message = system_message
-        self.function_definitions = functions
+        self.function_definitions = function_definitions
 
     def get_model(self):
         return self.model
@@ -13,7 +13,7 @@ class Bot:
         return self.system_message
     
     def get_function_definitions(self):
-        return self.functions
+        return self.function_definitions
 
     def get_completion(self, messages):
         if (messages is None):
