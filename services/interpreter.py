@@ -1,4 +1,4 @@
-from bot import Bot 
+from models.bot import Bot 
 
 model = 'gpt-3.5-turbo-0613'
 

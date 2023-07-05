@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, MagicMock
 import os
-from get_completion import get_completion
+from services.get_completion import get_completion
 
 class TestGetCompletion(unittest.TestCase):
     def setUp(self):

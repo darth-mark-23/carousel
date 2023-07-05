@@ -9,11 +9,17 @@ Carousel aims to revolutionize user interfaces using the intelligence of Large L
 1. Create a local environment variable called `OPENAI_API_KEY` and place your OpenAI API key in it.
 1. Install requirements (a virtual environment is recommended but not required):
 
-    python -m pip install -r requirements.txt
+> python -m pip install -r requirements.txt
 
-1. Start carousel:
+1. Start Flask:
 
-    python src/carousel.py
+> python run.py
+
+1. Navigate to the webapp in your browser:
+
+> http://localhost:5000
+
+1. To close the application, press CTRL-C in the console window (for most consoles)
 
 ## Revolutionizing User Interfaces: An AI-driven Approach Leveraging HTML-response Interpretation
 
@@ -69,3 +75,8 @@ Initially, Carousel will be the only Information Module provided. The rest, whil
 Transitioning towards an AI-driven UI model could be a game-changer in app use and development, making it more streamlined, cost-effective, and efficient. This approach maximizes the potential of AI and paves the way for a new generation of apps that are smarter, more personalized, and more intuitive to use.
 
 Join us as we embark on this exciting journey to revolutionize user interfaces. Your contributions, ideas, and feedback are most welcome!
+
+## Unit Tests
+
+> export PYTHONPATH=$PYTHONPATH:/path/to/your/project/root
+> python -m unittest discover tests

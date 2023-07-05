@@ -1,4 +1,4 @@
-from get_completion import get_completion
+from services.get_completion import get_completion
 
 class Bot:
     def __init__(self, model, system_message, function_definitions):
