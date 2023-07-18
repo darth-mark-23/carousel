@@ -6,6 +6,7 @@ from tiktoken import encoding_for_model, Encoding
 class AIModel:
     model_name: str
     context_window_size: int
+    completion_function: callable = get_completion
 
     def __post_init__ (self) -> None:
         if ( self.model_name is None ):
@@ -18,8 +19,8 @@ class AIModel:
     def encoding(self) -> Encoding:
         return encoding_for_model(self.model_name)
     
-    def get_completion(self, function_definitions, messages) -> str:
+    def get_ai_completion(self, function_definitions, messages) -> str:
         if (messages is None):
             raise Exception('Bot ' + self.__class__.__name__ + ' asked for completion when `messages` is None')
         
-        return get_completion(self.model_name, function_definitions, messages)
+        return self.completion_function(self.model_name, function_definitions, messages)
