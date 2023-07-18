@@ -33,7 +33,6 @@ def get_bot_response() -> str:
     # Get the completion from the ChatBot
     completion = chatbot.get_completion(chat_history)
 
-    print(completion)
     # Get the response, if any, and print it
     # Append the reponse to the chat history
     response = None
