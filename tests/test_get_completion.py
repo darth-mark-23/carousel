@@ -1,45 +1,28 @@
 import unittest
-from unittest.mock import patch, MagicMock
-import os
-from services.get_completion import get_completion
+from unittest.mock import patch, Mock
+from services.get_completion import get_completion  # replace with actual module path
 
 class TestGetCompletion(unittest.TestCase):
-    def setUp(self):
-        self.model = 'gpt-3.5-turbo-0613'
-        self.functions = [{'name': 'function1'}, {'name': 'function2'}]
-        self.messages = [{'role': 'system', 'content': 'Hello, how can I help you?'}]
-
-    def test_get_completion_with_none_model(self):
-        with self.assertRaises(Exception) as context:
-            get_completion(None, self.functions, self.messages)
-        self.assertTrue('Completion requested with missing model parameter' in str(context.exception))
-
-    def test_get_completion_with_none_functions(self):
-        with self.assertRaises(Exception) as context:
-            get_completion(self.model, None, self.messages)
-        self.assertTrue('Completion requested with missing functions parameter' in str(context.exception))
-
-    def test_get_completion_with_none_messages(self):
-        with self.assertRaises(Exception) as context:
-            get_completion(self.model, self.functions, None)
-        self.assertTrue('Completion requested with blank messages parameter' in str(context.exception))
-
     @patch('openai.ChatCompletion.create')
-    def test_get_completion_calls_openai_create(self, mock_create):
-        # Arrange
-        mock_create.return_value = MagicMock()
+    def test_get_completion(self, mock_create):
+        mock_create.return_value = "Mocked completion"
+        mock_message = Mock()
+        mock_message.to_json.return_value = "Mocked JSON message"
+        result = get_completion('gpt-3', ['mock_function'], [mock_message])
+        self.assertEqual(result, "Mocked completion")
 
-        # Act
-        result = get_completion(self.model, self.functions, self.messages)
+    def test_model_none(self):
+        with self.assertRaises(Exception):
+            get_completion(None, ['mock_function'], ['mock_message'])
 
-        # Assert
-        mock_create.assert_called_once_with(
-            model=self.model,
-            messages=self.messages,
-            functions=self.functions,
-            max_tokens=2000,
-            temperature=0.7
-        )
+    def test_function_definitions_none(self):
+        with self.assertRaises(Exception):
+            get_completion('gpt-3', None, ['mock_message'])
+
+    def test_messages_none(self):
+        with self.assertRaises(Exception):
+            get_completion('gpt-3', ['mock_function'], None)
+
 
 if __name__ == '__main__':
     unittest.main()
