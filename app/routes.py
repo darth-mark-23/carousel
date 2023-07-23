@@ -1,9 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 from services.chatbot import get_chatbot
 from app import app
-from models.message import Message
-
-import tiktoken
+from models.bot import Message, FunctionCall
 
 chatbot = get_chatbot()
 chat_history: list[Message] = []
@@ -35,7 +33,7 @@ def get_bot_response() -> str:
 
     # Get the response, if any, and print it
     # Append the reponse to the chat history
-    response = None
+    response: str = None
     try:
         response = completion.choices[0].message.content
     except AttributeError:
@@ -43,6 +41,19 @@ def get_bot_response() -> str:
 
     if response:
         chat_history.append(Message('assistant', response))
+
+    function_call: FunctionCall = None
+    try:
+        function_call_name = completion.choices[0].message.function_call.name
+        function_call_arguments = completion.choices[0].message.function_call.arguments
+        function_call = FunctionCall(function_call_name, function_call_arguments)
+    except (AttributeError, IndexError):
+        function_call = None
+
+    if function_call:
+        chat_history.append(Message('assistant', f"Called function `{function_call.name}` with arguments `{function_call.arguments}`."))
+        chat_history.append(Message(f"function_{function_call.name}", chatbot.resolve_function(function_call) ))
+
 
     return jsonify({'msg': response})
 
