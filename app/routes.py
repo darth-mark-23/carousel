@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request, jsonify
-from services.chatbot import get_chatbot
 from app import app
 from models.bot import Message, FunctionCall
+from services.chatbot import ChatBot
 
-chatbot = get_chatbot()
+chatbot = ChatBot()
 chat_history: list[Message] = []
 
 @app.route("/")
